@@ -1,2 +1,3 @@
 # nomadchat
-Beautiful Chat App made in NodeJS + SocketIO + MongoDB and ReactJS
+
+Beautiful Chat App made in NodeJS + KoaJS + SocketIO + MongoDB and ReactJS

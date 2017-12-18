@@ -1,0 +1,10 @@
+{
+  "name": "nomadchat",
+  "version": "1.0.0",
+  "description":
+    "Beautiful Chat App made in NodeJS + KoaJS + SocketIO + MongoDB and ReactJS",
+  "main": "index.js",
+  "repository": "https://github.com/nomadcoders/nomadchat",
+  "author": "Nicolás Serrano Arévalo <nico@nomadcoders.co>",
+  "license": "MIT"
+}
