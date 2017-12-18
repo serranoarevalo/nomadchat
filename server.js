@@ -4,17 +4,15 @@ const Koa = require("koa");
 const logger = require("koa-logger");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
-const convert = require("koa-convert");
-const koaRes = require("koa-res");
 const createReadStream = require("fs").createReadStream;
 const serve = require("koa-static");
 const path = require("path");
-const IO = require("koa-socket");
 
 const db = require("./db");
 const app = new Koa();
 const router = new Router();
-const io = new IO();
+const server = require("http").createServer(app.callback());
+const io = require("socket.io")(server);
 
 app.use(logger());
 
@@ -41,17 +39,30 @@ router.get("/", async (ctx, next) => {
   );
 });
 
-io.attach(app);
-
-io.on("connection", async (ctx, data) => {
-  console.log("Somebody connected");
-});
-
-io.on("login", async (ctx, data) => {
-  console.log(data, "just logged in");
-});
-
 const port = process.env.PORT || 3000;
 
-app.listen(port);
-console.log("Server running on port", port, "✅");
+server.listen(port);
+console.log("Server running on the port", port, "✅");
+
+io.on("connection", socket => {
+  console.log(socket.id, "connected");
+
+  socket.on("login", msg => {
+    socket.nickname = msg;
+    socket.join("nomadchat", () => {
+      console.log(socket.nickname, "joined /nomadchat");
+      const nomads = getConnected();
+      io.sockets.emit("room change", { connected: nomads });
+    });
+  });
+});
+
+const getConnected = () => {
+  const nomads = io.sockets.adapter.rooms["nomadchat"].sockets;
+  const connected = [];
+  for (let nomadId in nomads) {
+    let nomad = io.sockets.connected[nomadId];
+    connected.push(nomad.nickname);
+  }
+  return connected;
+};
