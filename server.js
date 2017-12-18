@@ -49,16 +49,19 @@ io.on("connection", socket => {
 
   socket.on("login", msg => {
     socket.nickname = msg;
-    socket.join("nomadchat", () => {
-      console.log(socket.nickname, "joined /nomadchat");
-      const nomads = getConnected();
-      io.sockets.emit("room change", { connected: nomads });
-    });
+    console.log(socket.nickname, "joined /nomadchat");
+    const nomads = getConnected();
+    io.emit("room change", { connected: nomads });
+  });
+  socket.on("disconnect", () => {
+    console.log("somebody left /nomadchat");
+    const nomads = getConnected();
+    io.emit("room change", { connected: nomads });
   });
 });
 
 const getConnected = () => {
-  const nomads = io.sockets.adapter.rooms["nomadchat"].sockets;
+  const nomads = io.sockets.connected;
   const connected = [];
   for (let nomadId in nomads) {
     let nomad = io.sockets.connected[nomadId];
