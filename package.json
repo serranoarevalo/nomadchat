@@ -6,5 +6,24 @@
   "main": "index.js",
   "repository": "https://github.com/nomadcoders/nomadchat",
   "author": "Nicolás Serrano Arévalo <nico@nomadcoders.co>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-logger": "^3.1.0",
+    "koa-res": "^3.0.0",
+    "koa-router": "^7.3.0",
+    "koa-send": "^4.1.2",
+    "koa-static": "^4.0.2",
+    "mongoose": "^4.13.7",
+    "socket.io": "^2.0.4"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.13.3"
+  }
 }
