@@ -1,28 +1,47 @@
 .App {
-  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App .loginForm {
+  min-width: 300px;
+  position: relative;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.loginForm .login__input {
+  padding: 25px 20px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 40px;
+  border: 0;
+  box-shadow: 0 19px 38px rgba(100, 100, 100, 0.3),
+    0 15px 12px rgba(100, 100, 100, 0.1);
+  background-color: #f6e262;
 }
 
-.App-title {
-  font-size: 1.5em;
+.loginForm .login__input:focus {
+  outline: none;
 }
 
-.App-intro {
-  font-size: large;
+.loginForm .login__button {
+  position: absolute;
+  right: -30px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(50, 50, 50, 0.3), 0 2px 6px rgba(50, 50, 50, 0.1);
+  top: 12%;
+  border: 0;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.login__button:active,
+.login__button:focus {
+  outline: none;
 }

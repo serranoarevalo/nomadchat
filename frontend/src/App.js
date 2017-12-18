@@ -19,12 +19,21 @@ class App extends Component {
     return (
       <div className="App">
         {!hasNickName && (
-          <form onSubmit={this._submit}>
+          <form onSubmit={this._submit} className="loginForm">
             <input
               type="text"
               value={nickname || ""}
               onChange={this._updateNickname}
+              placeholder={"Write your nickname"}
+              className="login__input"
+              required={true}
+              maxLength={50}
             />
+            <button className="login__button">
+              <span role="img" aria-label="go">
+                👍🏻
+              </span>
+            </button>
           </form>
         )}
       </div>
@@ -33,6 +42,9 @@ class App extends Component {
   _submit = e => {
     e.preventDefault();
     const { nickname } = this.state;
+    if (!nickname) {
+      return alert("Enter a nickname");
+    }
     localStorage.setItem("nickname", nickname);
     this.setState({
       hasNickName: true

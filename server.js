@@ -9,10 +9,12 @@ const koaRes = require("koa-res");
 const createReadStream = require("fs").createReadStream;
 const serve = require("koa-static");
 const path = require("path");
+const IO = require("koa-socket");
 
 const db = require("./db");
 const app = new Koa();
 const router = new Router();
+const io = new IO();
 
 app.use(logger());
 
@@ -37,6 +39,16 @@ router.get("/", async (ctx, next) => {
   ctx.body = createReadStream(
     path.join(__dirname, "/frontend/build/index.html")
   );
+});
+
+io.attach(app);
+
+io.on("connection", async (ctx, data) => {
+  console.log("Somebody connected");
+});
+
+io.on("login", async (ctx, data) => {
+  console.log(data, "just logged in");
 });
 
 const port = process.env.PORT || 3000;
