@@ -48,7 +48,8 @@ io.on("connection", socket => {
   console.log(socket.id, "connected");
 
   socket.on("login", msg => {
-    socket.nickname = msg;
+    socket.nickname = msg.nickname;
+    socket.loggedIn = msg.loggedIn;
     console.log(socket.nickname, "joined /nomadchat");
     const nomads = getConnected();
     io.emit("room change", { connected: nomads });
@@ -65,7 +66,7 @@ const getConnected = () => {
   const connected = [];
   for (let nomadId in nomads) {
     let nomad = io.sockets.connected[nomadId];
-    connected.push(nomad.nickname);
+    if (nomad.loggedIn) connected.push(nomad.nickname);
   }
   return connected;
 };

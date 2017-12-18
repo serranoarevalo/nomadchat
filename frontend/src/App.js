@@ -72,7 +72,7 @@ class App extends Component {
   };
   _logUserIn = () => {
     const { nickname } = this.state;
-    socket.emit("login", nickname);
+    socket.emit("login", { nickname, loggedIn: true });
     this.setState({ loggedIn: true });
   };
   _updateNomads = nomads => {
