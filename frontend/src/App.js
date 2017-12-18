@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
+  componentDidMount() {
+    this.socket = openSocket("http://localhost:3000");
+  }
   render() {
     return (
       <div className="App">
