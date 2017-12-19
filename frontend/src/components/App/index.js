@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import "./styles.css";
 import NicknameInput from "components/NicknameInput";
 import ConnectedUsers from "components/ConnectedUsers";
+import Messages from "components/Messages";
 const socket = io("http://localhost:8000");
 
 class App extends Component {
@@ -37,6 +38,15 @@ class App extends Component {
             />
           )}
         {loggedIn && <ConnectedUsers users={nomads} />}
+        {loggedIn && (
+          <div className="Chat__Column">
+            <Messages />
+            <input
+              placeholder="Write your message"
+              className="u-card login__input typeMessage"
+            />
+          </div>
+        )}
       </div>
     );
   }
