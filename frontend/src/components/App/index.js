@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-import "./App.css";
-const socket = io("http://localhost:3000");
+import "./styles.css";
+import NicknameInput from "components/NicknameInput";
+import ConnectedUsers from "components/ConnectedUsers";
+const socket = io("http://localhost:8000");
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class App extends Component {
       this._updateNomads(msg.connected);
     });
     this.state = {
-      nickname: localStorage.getItem("nickname"),
+      nickname: localStorage.getItem("nickname") || "",
       hasNickName: localStorage.getItem("nickname") ? true : false,
       loggedIn: false,
       nomads: []
@@ -25,30 +27,16 @@ class App extends Component {
   render() {
     const { nickname, hasNickName, nomads, loggedIn } = this.state;
     return (
-      <div className="App">
+      <div className={`App ${loggedIn && "Chat"}`}>
         {!hasNickName &&
           !loggedIn && (
-            <form onSubmit={this._submit} className="loginForm">
-              <input
-                type="text"
-                value={nickname || ""}
-                onChange={this._updateNickname}
-                placeholder={"Write your nickname"}
-                className="login__input"
-                required={true}
-                maxLength={50}
-                minLength={5}
-              />
-              <button className="login__button">
-                <span role="img" aria-label="go">
-                  👍🏻
-                </span>
-              </button>
-            </form>
+            <NicknameInput
+              onSubmit={this._submit}
+              value={nickname}
+              onChange={this._updateNickname}
+            />
           )}
-        {loggedIn && (
-          <ul>{nomads.map(nomad => <li key={nomad}>{nomad}</li>)}</ul>
-        )}
+        {loggedIn && <ConnectedUsers users={nomads} />}
       </div>
     );
   }

@@ -1,0 +1,13 @@
+.App {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Chat {
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}

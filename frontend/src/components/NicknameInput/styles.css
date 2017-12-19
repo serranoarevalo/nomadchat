@@ -1,11 +1,4 @@
-.App {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.App .loginForm {
+.loginForm {
   min-width: 300px;
   position: relative;
 }
