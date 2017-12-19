@@ -1,5 +1,6 @@
 .connectedUsers {
   width: 20%;
+  min-height: 20px;
 }
 
 .connectedUsers .connectedUsers__title {

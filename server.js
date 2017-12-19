@@ -7,6 +7,7 @@ const bodyParser = require("koa-bodyparser");
 const createReadStream = require("fs").createReadStream;
 const serve = require("koa-static");
 const path = require("path");
+const Message = require("./models");
 
 const db = require("./db");
 const app = new Koa();
@@ -45,14 +46,23 @@ server.listen(port);
 console.log("Server running on the port", port, "✅");
 
 io.on("connection", socket => {
-  console.log(socket.id, "connected");
-
-  socket.on("login", msg => {
+  socket.on("login", async (msg, fn) => {
     socket.nickname = msg.nickname;
     socket.loggedIn = msg.loggedIn;
     console.log(socket.nickname, "joined /nomadchat");
     const nomads = getConnected();
+    const messages = await Message.find({});
+    fn(messages);
     io.emit("room change", { connected: nomads });
+  });
+  socket.on("send message", async msg => {
+    const message = await Message.create({
+      user: socket.nickname,
+      message: msg.message
+    });
+    if (message) {
+      io.emit("new message", { newMessage: { message } });
+    }
   });
   socket.on("disconnect", () => {
     console.log("somebody left /nomadchat");

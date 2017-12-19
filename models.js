@@ -1,7 +1,6 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
@@ -22,6 +21,7 @@ MessageModel.pre("save", async function(next) {
   const message = this;
   const currentDate = new Date();
   message.created_at = currentDate;
+  return next();
 });
 
-module.exports = mongoose.model("Chat", MessageModel);
+module.exports = mongoose.model("Message", MessageModel);

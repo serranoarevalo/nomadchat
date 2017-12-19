@@ -12,12 +12,18 @@
   flex-direction: column-reverse;
   align-items: flex-end;
   margin-bottom: 50px;
-  width: 80%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  max-height: 80vh;
+  width: 100%;
+  padding: 10px 30px;
 }
 
 .messages__message {
   padding: 10px 25px;
-  width: 100%;
+  width: 60%;
+  margin-bottom: 20px;
+  position: sticky;
 }
 
 .message__text {

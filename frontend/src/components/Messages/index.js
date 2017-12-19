@@ -4,7 +4,7 @@ import "./styles.css";
 
 const Messages = props => (
   <div className="messages">
-    <ul className="messages__list">
+    <ul className="messages__list" id="messages">
       {props.messages.map(message => (
         <li key={message.created_at} className="messages__message u-card">
           <span className="message__user">{message.user}</span>
