@@ -1,4 +1,31 @@
 .messages {
   width: 100%;
   min-height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.messages__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  width: 80%;
+}
+
+.messages__message {
+  padding: 10px 25px;
+  width: 100%;
+}
+
+.message__text {
+}
+.message__user {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  font-weight: 600;
+  margin-bottom: 5px;
 }

@@ -16,7 +16,14 @@ class App extends Component {
       nickname: localStorage.getItem("nickname") || "",
       hasNickName: localStorage.getItem("nickname") ? true : false,
       loggedIn: false,
-      nomads: []
+      nomads: [],
+      messages: [
+        {
+          user: "nicolas",
+          message: "I love this",
+          created_at: "1234"
+        }
+      ]
     };
   }
   componentDidMount() {
@@ -26,7 +33,7 @@ class App extends Component {
     }
   }
   render() {
-    const { nickname, hasNickName, nomads, loggedIn } = this.state;
+    const { nickname, hasNickName, nomads, loggedIn, messages } = this.state;
     return (
       <div className={`App ${loggedIn && "Chat"}`}>
         {!hasNickName &&
@@ -40,7 +47,7 @@ class App extends Component {
         {loggedIn && <ConnectedUsers users={nomads} />}
         {loggedIn && (
           <div className="Chat__Column">
-            <Messages />
+            <Messages messages={messages} />
             <input
               placeholder="Write your message"
               className="u-card login__input typeMessage"

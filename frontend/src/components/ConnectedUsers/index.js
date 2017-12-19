@@ -7,7 +7,9 @@ const ConnectedUsers = props => (
     <h3 className="connectedUsers__title">Connected Users</h3>
     <ul className="connectedUsers__list u-card">
       {props.users.map(user => (
-        <li className="connectedUsers__user">{user}</li>
+        <li key={user} className="connectedUsers__user">
+          {user}
+        </li>
       ))}
     </ul>
   </div>
