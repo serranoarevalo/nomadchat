@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import "./styles.css";
-import NicknameInput from "components/NicknameInput";
 import ConnectedUsers from "components/ConnectedUsers";
 import Messages from "components/Messages";
 const client = io("http://localhost:8000");
