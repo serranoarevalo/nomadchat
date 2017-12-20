@@ -17,8 +17,6 @@ const io = require("socket.io")(server);
 
 app.use(logger());
 
-app.use(bodyParser());
-
 app.use(async (ctx, next) => {
   try {
     await next();

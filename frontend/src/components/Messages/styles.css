@@ -20,9 +20,10 @@
 
 .messages__message {
   padding: 10px 25px;
-  width: 60%;
+  width: 100%;
   margin-bottom: 20px;
   position: sticky;
+  box-sizing: border-box;
 }
 
 .message__text {

@@ -1,5 +1,4 @@
 .connectedUsers {
-  width: 20%;
   min-height: 20px;
   margin-top: 50px;
 }
@@ -21,6 +20,7 @@
 
 .connectedUsers .connectedUsers__user {
   margin-bottom: 10px;
+  padding: 10px;
 }
 .connectedUsers .connectedUsers__user:last-child {
   margin-bottom: 0;

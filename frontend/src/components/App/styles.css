@@ -23,7 +23,7 @@
 
 .Chat__Column {
   width: 70%;
-  height: 80%;
+  flex-shrink: 0;
 }
 
 .loginForm {
@@ -41,6 +41,7 @@
     0 15px 12px rgba(100, 100, 100, 0.1);
   background-color: #f6e262;
   font-weight: 600;
+  box-sizing: border-box;
 }
 
 .login__input:focus {
@@ -66,4 +67,14 @@
 .login__button:active,
 .login__button:focus {
   outline: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 700px) {
+  .Chat {
+    flex-direction: column-reverse;
+  }
+  .Chat__Column {
+    width: 100%;
+    justify-content: center;
+  }
 }
