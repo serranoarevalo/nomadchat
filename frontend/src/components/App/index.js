@@ -43,11 +43,23 @@ class App extends Component {
       <div className={`App ${loggedIn && "Chat"}`}>
         {!hasNickName &&
           !loggedIn && (
-            <NicknameInput
-              onSubmit={this._submit}
-              value={nickname}
-              onChange={this._updateNickname}
-            />
+            <form onSubmit={this._submit} className="loginForm">
+              <input
+                type="text"
+                value={nickname}
+                onChange={this._updateNickname}
+                placeholder={"Write your nickname"}
+                className="login__input"
+                required={true}
+                maxLength={50}
+                minLength={2}
+              />
+              <button className="login__button">
+                <span role="img" aria-label="go">
+                  👍🏻
+                </span>
+              </button>
+            </form>
           )}
         {loggedIn && <ConnectedUsers users={nomads} />}
         {loggedIn && (
